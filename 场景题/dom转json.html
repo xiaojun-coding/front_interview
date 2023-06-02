@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom转json</title>
+</head>
+<body>
+<div class="box">
+  <p class="p">hello world</p>
+  <div class="person">
+    <span class="name">DOM2JSON</span>
+    <span class="age">100</span>
+    <div class="student">
+      <span class="name">zhangsan</span>
+      <span class="age">18</span>
+    </div>
+  </div>
+</div>
+<script>
+  function domToJson(domTree) {
+    if(!domTree) return
+    let obj = {
+      tagName: domTree.tagName,
+      children: []
+    }
+    const children = domTree.children;
+    if(children) {
+      Array.from(children).forEach((child)=> obj.children.push(domToJson(child)))
+    }
+    return obj
+  }
+  const domTree = document.querySelector(".box");
+  console.log(domToJson(domTree))
+</script>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<!-- 图片拦截加载 -->
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal1.jpeg"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal2.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal3.jpeg"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal4.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal5.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal6.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal1.jpeg"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal2.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal3.jpeg"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal4.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal5.webp"/>
+</div>
+<div class="item-container">
+  <p>新闻标题</p>
+  <img src="./img/loading.gif" data-src="./img/animal6.webp"/>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+<script>
+
+  function layLoadImage() {
+    // 获取images
+    const images = document.querySelectorAll("img[data-src]")
+    // 新建IntersectionObserver
+    let observe = new IntersectionObserver((entries,observer)=> {
+      // 遍历
+      entries.forEach(item=> {
+        // 获取正在观察的元素
+        let target = item.target;
+        // 判断
+        if(item.isIntersecting && target.dataset.src) {
+          target.src = target.dataset.src
+        //   删除data-src
+          target.removeAttribute("data-src")
+        //   取消观察
+          target.unobserve(item.target)
+        }
+
+      })
+    })
+    // 观察每一个图片
+    images.forEach(item=> {
+      observe.observe(item);
+    })
+  }
+  // 执行layLoadImage
+  layLoadImage()
+</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 图片拦截加载 -->
+    <div class="item-container">
+        <p>新闻标题</p>
+        <img src="./img/loading.gif" data-src="./img/animal1.jpeg"/>
+    </div>
+    <div class="item-container">
+        <p>新闻标题</p>
+        <img src="./img/loading.gif" data-src="./img/animal2.webp"/>
+    </div>
+    <div class="item-container">
+        <p>新闻标题</p>
+        <img src="./img/loading.gif" data-src="./img/animal3.jpeg"/>
+    </div>
+    <div class="item-container">
+        <p>新闻标题</p>
+        <img src="./img/loading.gif" data-src="./img/animal4.webp"/>
+    </div>
+    <div class="item-container">
+        <p>新闻标题</p>
+        <img src="./img/loading.gif" data-src="./img/animal5.webp"/>
+    </div>
+    <div class="item-container">
+        <p>新闻标题</p>
+        <img src="./img/loading.gif" data-src="./img/animal6.webp"/>
+    </div>
+<div class="item-container">
+    <p>新闻标题</p>
+    <img src="./img/loading.gif" data-src="./img/animal1.jpeg"/>
+</div>
+<div class="item-container">
+    <p>新闻标题</p>
+    <img src="./img/loading.gif" data-src="./img/animal2.webp"/>
+</div>
+<div class="item-container">
+    <p>新闻标题</p>
+    <img src="./img/loading.gif" data-src="./img/animal3.jpeg"/>
+</div>
+<div class="item-container">
+    <p>新闻标题</p>
+    <img src="./img/loading.gif" data-src="./img/animal4.webp"/>
+</div>
+<div class="item-container">
+    <p>新闻标题</p>
+    <img src="./img/loading.gif" data-src="./img/animal5.webp"/>
+</div>
+<div class="item-container">
+    <p>新闻标题</p>
+    <img src="./img/loading.gif" data-src="./img/animal6.webp"/>
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+
+        function layLoadImage() {
+            const images = document.querySelectorAll("img[data-src]");
+            console.log(images);
+            images.forEach(item=> {
+                const rect = item.getBoundingClientRect()
+                if(rect.top < window.innerHeight) {
+                    item.src = item.dataset.src;
+                    item.removeAttribute("data-src");
+                }
+            })
+        }
+        // 做节流操作
+        window.addEventListener("scroll", _.throttle(()=> {
+            layLoadImage()
+        }, 100))
+        layLoadImage()
+    </script>
+</body>
+</html>
